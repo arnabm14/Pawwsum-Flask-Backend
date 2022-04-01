@@ -1,4 +1,17 @@
-# FlaskIntroduction
+# Pawwsum Flask Steps to run
+
+To execute it without virtual environment :
+
+1.
+```
+$ pip install -r requirements.txt
+```
+
+2.
+```
+python app.py
+```
+
 
 This repo has been updated to work with `Python v3.8` and up.
 
