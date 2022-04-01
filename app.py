@@ -17,7 +17,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 #         return '<Task %r>' % self.id
 
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/')
 def index():
     print("Working")
 
@@ -58,7 +58,7 @@ def banner():
     response = app.response_class(
         response=json.dumps(dataj),
         status=200,
-        mimetype='application/json'
+        mimetype='application/json; charset=utf-8'
     )
     return response
     print(type(json.dumps(dataj)))
