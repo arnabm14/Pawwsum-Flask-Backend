@@ -5,7 +5,7 @@ from flask import jsonify
 from flask import json
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 # db = sqlalchemy(app)
 
 # class Todo(db.Model):
@@ -22,32 +22,32 @@ def index():
     print("Working")
 
 
-@app.route('/delete/<int:id>')
-def delete(id):
-    task_to_delete = Todo.query.get_or_404(id)
+# @app.route('/delete/<int:id>')
+# def delete(id):
+#     task_to_delete = Todo.query.get_or_404(id)
 
-    try:
-        db.session.delete(task_to_delete)
-        db.session.commit()
-        return redirect('/')
-    except:
-        return 'There was a problem deleting that task'
+#     try:
+#         db.session.delete(task_to_delete)
+#         db.session.commit()
+#         return redirect('/')
+#     except:
+#         return 'There was a problem deleting that task'
 
-@app.route('/update/<int:id>', methods=['GET', 'POST'])
-def update(id):
-    task = Todo.query.get_or_404(id)
+# @app.route('/update/<int:id>', methods=['GET', 'POST'])
+# def update(id):
+#     task = Todo.query.get_or_404(id)
 
-    if request.method == 'POST':
-        task.content = request.form['content']
+#     if request.method == 'POST':
+#         task.content = request.form['content']
 
-        try:
-            db.session.commit()
-            return redirect('/')
-        except:
-            return 'There was an issue updating your task'
+#         try:
+#             db.session.commit()
+#             return redirect('/')
+#         except:
+#             return 'There was an issue updating your task'
 
-    else:
-        return render_template('update.html', task=task)
+#     else:
+#         return render_template('update.html', task=task)
 
 
 @app.route('/banners')
