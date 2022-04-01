@@ -2,12 +2,12 @@
 
 To execute it without virtual environment :
 
-1.
+1. Install the requirements.txt file
 ```
 $ pip install -r requirements.txt
 ```
 
-2.
+2. Execute the python script
 ```
 python app.py
 ```
