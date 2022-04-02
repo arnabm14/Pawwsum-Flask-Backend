@@ -99,6 +99,7 @@ def categories():
     return response
 
 @app.route('/products')
+@cross_origin()
 def products():
     data=open("products.json")
     dataj=json.load(data)
@@ -112,6 +113,7 @@ def products():
 
 
 @app.route('/recommendations')
+@cross_origin()
 def products():
     data=open("products.json")
     dataj=json.load(data)
