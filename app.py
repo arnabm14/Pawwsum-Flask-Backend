@@ -108,6 +108,19 @@ def products():
         mimetype='application/json; charset=utf-8'
     )
     return response
+    # return jsonify(json.load(open("products.json
+
+
+@app.route('/recommendations')
+def products():
+    data=open("products.json")
+    dataj=json.load(data)
+    response = app.response_class(
+        response=json.dumps(dataj),
+        status=200,
+        mimetype='application/json; charset=utf-8'
+    )
+    return response
     # return jsonify(json.load(open("products.json")))
 
 
