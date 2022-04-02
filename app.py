@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, request, redirect
-#from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask import jsonify
 from flask import json
@@ -114,7 +114,7 @@ def products():
 
 @app.route('/recommendations')
 @cross_origin()
-def products():
+def recommend():
     data=open("products.json")
     dataj=json.load(data)
     response = app.response_class(
