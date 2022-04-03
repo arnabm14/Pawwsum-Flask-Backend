@@ -21,6 +21,20 @@ class Todo(db.Model):
     def __repr__(self):
         return '<Task %r>' % self.id
 
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    FName = db.Column(db.String(200), nullable=False)
+    LName = db.Column(db.String(200), nullable=False)
+    PName = db.Column(db.String(200), nullable=False)
+    PType = db.Column(db.String(200), nullable=False)
+    Email = db.Column(db.String(200), nullable=False)
+    Password = db.Column(db.String(200), nullable=False)
+    # content = db.Column(db.String(200), nullable=False)
+    date_created = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return '<Task %r>' % self.id
+
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
@@ -69,7 +83,6 @@ def update(id):
         return render_template('update.html', task=task)
 
 @app.route('/banners')
-@cross_origin()
 def banner():
     # return render_template('banners.json')
     data=open("banners.json")
@@ -86,7 +99,6 @@ def banner():
 
 
 @app.route('/categories')
-@cross_origin()
 def categories():
     # return render_template('categories.json')
     data=open("categories.json")
@@ -99,7 +111,6 @@ def categories():
     return response
 
 @app.route('/products')
-@cross_origin()
 def products():
     data=open("products.json")
     dataj=json.load(data)
@@ -113,7 +124,6 @@ def products():
 
 
 @app.route('/recommendations')
-@cross_origin()
 def recommend():
     data=open("products.json")
     dataj=json.load(data)
