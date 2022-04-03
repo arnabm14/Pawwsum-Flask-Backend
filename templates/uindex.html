@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Task Master</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center">User Details</h1>
+    {% if users|length < 1 %}
+    <h4 style="text-align: center">No Users to show</h4>
+    {% else %}
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>FName</th>
+            <th>LName</th>
+            <th>PName</th>
+            <th>PType</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Date Created</th>
+        </tr>
+        {% for u in users %}
+            <tr>
+                <td>{{ u.id }}</td>
+                <td>{{ u.FName }}</td>
+                <td>{{ u.LName }}</td>
+                <td>{{ u.PName }}</td>
+                <td>{{ u.PType }}</td>
+                <td>{{ u.Email }}</td>
+                <td>{{ u.Password }}</td>
+                <td>{{ u.date_created.date() }}</td>
+                <td>
+                    <a href="/user/delete/{{u.id}}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <div class="form">
+        <form action="/user" method="POST">
+            <input type="text" placeholder="First name" name="fn" id="content">
+            <input type="text" placeholder="Last name" name="ln" id="content">
+            <input type="text" placeholder="Pet name" name="pn" id="content">
+            <input type="text" placeholder="Pet type" name="pt" id="content">
+            <input type="text" placeholder="Email" name="em" id="content">
+            <input type="password" placeholder="Password" name="ps" id="content">
+            <input type="submit" value="Add User">
+        </form>
+    </div>
+</div>
+{% endblock %}

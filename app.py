@@ -33,7 +33,7 @@ class User(db.Model):
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
-        return '<Task %r>' % self.id
+        return '<User %r>' % self.id
 
 
 @app.route('/', methods=['POST', 'GET'])
@@ -135,7 +135,75 @@ def recommend():
     return response
     # return jsonify(json.load(open("products.json")))
 
+@app.route('/user', methods=['POST', 'GET'])
+def User_Interaction():
+    # return "Hello World, The Code is working"
+    if request.method == 'POST':
+        # print("Inside post")
+        fn = request.form['fn']
+        ln = request.form['ln']
+        pn = request.form['pn']
+        pt = request.form['pt']
+        em = request.form['em']
+        ps = request.form['ps']
+        new_user = User(FName=fn,
+                        LName=ln,
+                        PName=pn,
+                        PType=pt,
+                        Email=em,
+                        Password=ps,
+                        )
 
+        try:
+            db.session.add(new_user)
+            db.session.commit()
+            # print("Done")
+            return redirect('/user')
+            
+        except:
+            return 'There was an issue adding your User'
+
+    else:
+        users = User.query.order_by(User.date_created).all()
+        # print(users)
+        return render_template('uindex.html', users=users)
+
+@app.route('/user/delete/<int:id>')
+def user_delete(id):
+    task_to_delete = User.query.get_or_404(id)
+
+    try:
+        db.session.delete(task_to_delete)
+        db.session.commit()
+        return redirect('/user')
+    except:
+        return 'There was a problem deleting that task'
+
+@app.route('/user/pass/<string:email>')
+def user_pasword(email):
+
+    task_to_delete = User.query.filter_by(Email=email).first()
+    if task_to_delete==None:
+        return "Wrong Username or Password"
+    
+    return task_to_delete.Password
+
+
+@app.route('/user/update/<int:id>', methods=['GET', 'POST'])
+def user_update(id):
+    task = User.query.get_or_404(id)
+
+    if request.method == 'POST':
+        task.content = request.form['FName']
+
+        try:
+            db.session.commit()
+            return redirect('/user')
+        except:
+            return 'There was an issue updating your task'
+
+    else:
+        return render_template('update.html', task=task)
 
 if __name__ == "__main__":
     app.run(debug=True)
