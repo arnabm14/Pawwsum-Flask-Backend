@@ -18,6 +18,7 @@
         </tr>
         {% for task in tasks %}
             <tr>
+                <td>{{ task.id }}</td>
                 <td>{{ task.content }}</td>
                 <td>{{ task.date_created.date() }}</td>
                 <td>
