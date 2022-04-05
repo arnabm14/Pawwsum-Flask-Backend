@@ -156,10 +156,10 @@ def recommend_user(pt):
 
 @app.route('/user/order', methods=['POST', 'GET'])
 def User_Checkout():
-    
+    dataj={'Data':"Data"}
     response = app.response_class(
-        # response=json.dumps(dataj),
-        response="",
+        response=json.dumps(dataj),
+        # response="",
         status=200,
         mimetype='application/json; charset=utf-8'
     )
