@@ -135,6 +135,37 @@ def recommend():
     return response
     # return jsonify(json.load(open("products.json")))
 
+@app.route('/recommendations/<string:pt>')
+def recommend_user(pt):
+    # print(id) Pet Name
+    data=open("products.json")
+    dataj=json.load(data)
+    # print(dataj[0]["name"])
+    # User_id = User.query.get_or_404(pt)
+    # animal=User_id.PType
+    print(len(dataj))
+    print(pt)
+        
+    response = app.response_class(
+        response=json.dumps(dataj),
+        status=200,
+        mimetype='application/json; charset=utf-8'
+    )
+    return response
+    # return jsonify(json.load(open("products.json")))
+
+@app.route('/user/order', methods=['POST', 'GET'])
+def User_Checkout():
+    
+    response = app.response_class(
+        # response=json.dumps(dataj),
+        response="",
+        status=200,
+        mimetype='application/json; charset=utf-8'
+    )
+    return response
+    
+
 @app.route('/user', methods=['POST', 'GET'])
 def User_Interaction():
     # return "Hello World, The Code is working"
@@ -164,7 +195,7 @@ def User_Interaction():
             return 'There was an issue adding your User'
 
     else:
-        users = User.query.order_by(User.date_created).all()
+        users = User.query.all()
         # print(users)
         return render_template('uindex.html', users=users)
 
@@ -204,6 +235,10 @@ def user_update(id):
 
     else:
         return render_template('update.html', task=task)
+
+@app.route('/user/session')
+def session():
+    print(session["email"])
 
 if __name__ == "__main__":
     app.run(debug=True)

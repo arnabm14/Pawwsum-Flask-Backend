@@ -5,8 +5,8 @@ body, html {
 }
 
 .content {
-    margin: 3 auto;
-    width: 900px;
+    margin: 0 auto;
+    width: 400px;
 }
 
 table, td, th {
@@ -24,7 +24,7 @@ th {
 
 td {
     text-align: center;
-    padding: 2px;
+    padding: 5px;
 }
 
 .form {
