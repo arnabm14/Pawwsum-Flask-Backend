@@ -162,8 +162,8 @@ def recommend_user(pt):
         s=i["name"].upper().split()
         
         if (pt in s) :
-            print(i["name"])
-            print("*"*50)
+            # print(i["name"])
+            # print("*"*50)
             l.append(i)
     # print(l)
     random.shuffle(l)    
