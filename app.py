@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask import jsonify
 from flask import json
+import random
 # from flask_cors import CORS
 
 from flask_cors import CORS, cross_origin
@@ -155,6 +156,8 @@ def recommend_user(pt):
     elif pt in dog:
         pt="DOG"
         # pts="DOGS"
+    else:
+        pt
     for i in dataj:
         s=i["name"].upper().split()
         
@@ -163,7 +166,7 @@ def recommend_user(pt):
             print("*"*50)
             l.append(i)
     # print(l)
-        
+    random.shuffle(l)    
     response = app.response_class(
         response=json.dumps(l),
         status=200,
