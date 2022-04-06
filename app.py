@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -143,11 +144,28 @@ def recommend_user(pt):
     # print(dataj[0]["name"])
     # User_id = User.query.get_or_404(pt)
     # animal=User_id.PType
-    print(len(dataj))
-    print(pt)
+    # print(type(dataj))
+    l=list()
+    cat=["CATS","CAT","NEKOCHAN"]
+    dog=["DOGS","DOG","INU"]
+    pt=pt.upper()
+    if pt in cat:
+        pt="CAT"
+        # pts="CATS"
+    elif pt in dog:
+        pt="DOG"
+        # pts="DOGS"
+    for i in dataj:
+        s=i["name"].upper().split()
+        
+        if (pt in s) :
+            print(i["name"])
+            print("*"*50)
+            l.append(i)
+    # print(l)
         
     response = app.response_class(
-        response=json.dumps(dataj),
+        response=json.dumps(l),
         status=200,
         mimetype='application/json; charset=utf-8'
     )
