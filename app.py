@@ -260,3 +260,17 @@ def session():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+
+#  {
+#      "name": "Recommendations especially for you ! ",
+#      "key": "fruit-and-veg",
+#      "description": "The best place out there for recommendations and pet supplies catered for your needs.",
+#      "enabled": true,
+#      "order": 6,
+#      "imageUrl": "/static/images/category/recommendation.png",
+#      "id": "5b6899953d1a866534f516e4"
+#    }
+
+#  ]
